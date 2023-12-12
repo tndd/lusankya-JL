@@ -1,5 +1,4 @@
-module main
-
-greet() = print("Hello World!")
-
-end # module main
+println("Hello World A")
+println("Hello World B")
+println("Hello World C")
+println("Hello World D")
