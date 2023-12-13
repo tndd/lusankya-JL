@@ -40,13 +40,88 @@ class StockBarClient:
     def __post_init__(self):
         self.cli = StockHistoricalDataClient(api_key, secret_key)
 
-    def get_stock_bars(
+    def get_stock_bars_min(
             self,
             symbol: str,
             start: datetime,
             end: datetime,
-            timeframe: TimeFrame,
             limit: Optional[int]=None
+    ) -> str:
+        return self.get_stock_bars(
+            symbol,
+            start,
+            end,
+            TimeFrame.Minute,
+            limit
+        )
+
+    def get_stock_bars_hour(
+        self,
+        symbol: str,
+        start: datetime,
+        end: datetime,
+        limit: Optional[int]=None
+    ) -> str:
+        return self.get_stock_bars(
+            symbol,
+            start,
+            end,
+            TimeFrame.Hour,
+            limit
+        )
+
+    def get_stock_bars_day(
+            self,
+            symbol: str,
+            start: datetime,
+            end: datetime,
+            limit: Optional[int]=None
+    ) -> str:
+        return self.get_stock_bars(
+            symbol,
+            start,
+            end,
+            TimeFrame.Day,
+            limit
+        )
+
+    def get_stock_bars_week(
+            self,
+            symbol: str,
+            start: datetime,
+            end: datetime,
+            limit: Optional[int]=None
+    ) -> str:
+        return self.get_stock_bars(
+            symbol,
+            start,
+            end,
+            TimeFrame.Week,
+            limit
+        )
+
+    def get_stock_bars_month(
+        self,
+        symbol: str,
+        start: datetime,
+        end: datetime,
+        limit: Optional[int]=None
+    ) -> str:
+        return self.get_stock_bars(
+            symbol,
+            start,
+            end,
+            TimeFrame.Month,
+            limit
+        )
+
+    def _get_stock_bars(
+        self,
+        symbol: str,
+        start: datetime,
+        end: datetime,
+        timeframe: TimeFrame,
+        limit: Optional[int]=None
     ) -> str:
         request = StockBarsRequest(
             symbol_or_symbols=symbol,
@@ -59,7 +134,7 @@ class StockBarClient:
         return self.to_json_str(bars, symbol)
 
     @staticmethod
-    def to_json_str(bars: BarSet, symbol:str) -> str:
+    def _to_json_str(bars: BarSet, symbol:str) -> str:
         body = bars.data[symbol]
         listdict = [
             {
