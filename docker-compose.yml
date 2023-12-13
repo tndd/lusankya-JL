@@ -5,13 +5,15 @@ services:
     image: redis
     ports:
       - "49512:6379"
+    volumes:
+      - lusankya_redis:/data
 
   influxdb:
     image: influxdb
     ports:
       - "49513:8086"
     volumes:
-      - ./influxdb:/var/lib/influxdb
+      - lusankya_influxdb:/var/lib/influxdb
     environment:
       - INFLUXDB_DB=lusankya
 
@@ -20,8 +22,13 @@ services:
     ports:
       - "49514:5432"
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - lusankya_postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=lusankya
+
+volumes:
+  lusankya_redis:
+  lusankya_influxdb:
+  lusankya_postgres:
