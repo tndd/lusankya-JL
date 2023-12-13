@@ -5,7 +5,7 @@ using Redis
 # Redisサーバーへ接続
 conn = RedisConnection(host="localhost", port=49512)
 
-file = open("asset.json")
+file = open("mock/asset.json")
 data = read(file, String)
 close(file)
 
