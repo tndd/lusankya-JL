@@ -3,10 +3,12 @@ services:
 
   redis:
     image: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - "49512:6379"
     volumes:
       - lusankya_redis:/data
+      - ./docker/service_conf/redis.conf:/usr/local/etc/redis/redis.conf
 
   influxdb:
     image: influxdb
