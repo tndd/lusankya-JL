@@ -1,5 +1,10 @@
-module main
+using Redis
 
-greet() = print("Hello World!")
+# Redisサーバーへ接続
+conn = RedisConnection(host="localhost", port=49512)
 
-end # module main
+set(conn, "foo", "bar")
+
+println(get(conn, "foo"))
+
+disconnect(conn)
