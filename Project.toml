@@ -2,3 +2,7 @@ name = "lusankya"
 uuid = "6977b304-c63d-4618-be26-b671d2b6d068"
 authors = ["tau <36781951+tndd@users.noreply.github.com>"]
 version = "0.1.0"
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Redis = "0cf705f9-a9e2-50d1-a699-2b372a39b750"
