@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  redis:
+    image: redis
+    ports:
+      - "49512:6379"
+
+  influxdb:
+    image: influxdb
+    ports:
+      - "49513:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=lusankya
+
+  postgres:
+    image: postgres
+    ports:
+      - "49514:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=lusankya
