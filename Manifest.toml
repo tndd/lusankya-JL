@@ -2,7 +2,7 @@
 
 julia_version = "1.9.4"
 manifest_format = "2.0"
-project_hash = "a8a687cb2c8b5451daa26e452c8c6e9cb716a361"
+project_hash = "eb385c87517ff7f6d42127461cd9a8693d73bcad"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -44,6 +44,11 @@ version = "0.18.15"
 [[deps.Dates]]
 deps = ["Printf"]
 uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
+
+[[deps.DotEnv]]
+git-tree-sha1 = "d48ae0052378d697f8caf0855c4df2c54a97e580"
+uuid = "4dc1fcf4-5e3b-5448-94ab-0c38ec0385c1"
+version = "0.3.1"
 
 [[deps.Downloads]]
 deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
