@@ -8,7 +8,6 @@ from alpaca.data import BarSet
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
-from dotenv import load_dotenv
 
 
 @dataclass
@@ -127,6 +126,8 @@ class StockBarClient:
 
 
 if __name__ == "__main__":
+    from dotenv import load_dotenv
+
     load_dotenv()
     api_key = os.getenv("APCA_API_KEY_ID")
     secret_key = os.getenv("APCA_API_SECRET_KEY")
