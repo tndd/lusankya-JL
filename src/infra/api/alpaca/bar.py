@@ -1,13 +1,14 @@
+import json
+import os
+from dataclasses import dataclass
+from datetime import datetime
+from typing import Optional
+
+from alpaca.data import BarSet
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockBarsRequest
-from dotenv import load_dotenv
-from datetime import datetime
 from alpaca.data.timeframe import TimeFrame
-from alpaca.data import BarSet
-import os
-import json
-from dataclasses import dataclass
-from typing import Optional
+from dotenv import load_dotenv
 
 
 @dataclass
