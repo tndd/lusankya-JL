@@ -114,15 +114,8 @@ class StockBarClient:
     @staticmethod
     def _to_json_str(bars: BarSet, symbol:str) -> str:
         body = bars.data[symbol]
-        listdict = [
-            {
-                k: v.isoformat()
-                if k == 'timestamp' else v
-                for k, v in d.__dict__.items()
-            }
-            for d in body
-        ]
-        return json.dumps(listdict)
+        bars_str_list = [bar.model_dump_json() for bar in body]
+        return '[' + ', '.join(bars_str_list) + ']'
 
 
 if __name__ == "__main__":
