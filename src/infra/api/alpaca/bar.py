@@ -16,7 +16,7 @@ class StockBarClient:
     secret_key: str
 
     def __post_init__(self):
-        self.cli = StockHistoricalDataClient(api_key, secret_key)
+        self.cli = StockHistoricalDataClient(self.api_key, self.secret_key)
 
     def get_stock_bars_min(
             self,
@@ -25,7 +25,7 @@ class StockBarClient:
             end: datetime,
             limit: Optional[int]=None
     ) -> str:
-        return self.get_stock_bars(
+        return self._get_stock_bars(
             symbol,
             start,
             end,
@@ -40,7 +40,7 @@ class StockBarClient:
         end: datetime,
         limit: Optional[int]=None
     ) -> str:
-        return self.get_stock_bars(
+        return self._get_stock_bars(
             symbol,
             start,
             end,
@@ -55,7 +55,7 @@ class StockBarClient:
             end: datetime,
             limit: Optional[int]=None
     ) -> str:
-        return self.get_stock_bars(
+        return self._get_stock_bars(
             symbol,
             start,
             end,
@@ -70,7 +70,7 @@ class StockBarClient:
             end: datetime,
             limit: Optional[int]=None
     ) -> str:
-        return self.get_stock_bars(
+        return self._get_stock_bars(
             symbol,
             start,
             end,
@@ -85,7 +85,7 @@ class StockBarClient:
         end: datetime,
         limit: Optional[int]=None
     ) -> str:
-        return self.get_stock_bars(
+        return self._get_stock_bars(
             symbol,
             start,
             end,
@@ -96,20 +96,20 @@ class StockBarClient:
     def _get_stock_bars(
         self,
         symbol: str,
-        start: datetime,
-        end: datetime,
+        start: str,
+        end: str,
         timeframe: TimeFrame,
         limit: Optional[int]=None
     ) -> str:
         request = StockBarsRequest(
             symbol_or_symbols=symbol,
-            start=start,
-            end=end,
+            start=datetime.fromisoformat(start),
+            end=datetime.fromisoformat(end),
             timeframe=timeframe,
             limit=limit
         )
         bars = self.cli.get_stock_bars(request)
-        return self.to_json_str(bars, symbol)
+        return self._to_json_str(bars, symbol)
 
     @staticmethod
     def _to_json_str(bars: BarSet, symbol:str) -> str:
@@ -133,11 +133,10 @@ if __name__ == "__main__":
     secret_key = os.getenv("APCA_API_SECRET_KEY")
 
     stock_bar_cli = StockBarClient(api_key, secret_key)
-    resp = stock_bar_cli.get_stock_bars(
+    resp = stock_bar_cli.get_stock_bars_day(
         symbol="MSFT",
-        start=datetime(2000,1,1),
-        end=datetime(2023,12,13),
-        timeframe=TimeFrame.Minute,
+        start="2020-01-01",
+        end="2023-12-13",
         limit=10
     )
     print(resp)
