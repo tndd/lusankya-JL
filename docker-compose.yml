@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  redis:
+    image: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "49512:6379"
+    volumes:
+      - lusankya_redis:/data
+      - ./docker/service_conf/redis.conf:/usr/local/etc/redis/redis.conf
+
+  influxdb:
+    image: influxdb
+    ports:
+      - "49513:8086"
+    volumes:
+      - lusankya_influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=lusankya
+
+  postgres:
+    image: postgres
+    ports:
+      - "49514:5432"
+    volumes:
+      - lusankya_postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=lusankya
+
+volumes:
+  lusankya_redis:
+  lusankya_influxdb:
+  lusankya_postgres:
