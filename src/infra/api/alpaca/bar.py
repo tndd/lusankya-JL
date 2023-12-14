@@ -142,4 +142,4 @@ if __name__ == "__main__":
     print(resp)
 
     with open('out.json', 'w') as f:
-        json.dump(resp, f)
+        f.write(resp)
