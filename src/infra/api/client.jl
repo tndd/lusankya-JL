@@ -21,10 +21,11 @@ end
 
 function req_get(url::String, query::Dict, headers::Dict)
     # request
-    r = HTTP.get(url, query=params, headers=headers)
+    r = HTTP.get(url, query=query, headers=headers)
     # response
     r_status::Int = r.status
     r_headers::Dict = Dict(r.headers)
     r_body::String = String(r.body)
     # store
+    return r_body
 end

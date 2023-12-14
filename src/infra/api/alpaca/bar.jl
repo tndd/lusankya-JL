@@ -1,5 +1,7 @@
 using DotEnv
 
+include("../client.jl")
+
 DotEnv.load()
 
 # alpaca api stocks bars endpoint
@@ -19,4 +21,5 @@ headers = Dict(
     "APCA-API-SECRET-KEY" => ENV["APCA_API_SECRET_KEY"]
 )
 
-req_get(url, query, headers)
+b = req_get(url, query, headers)
+println(b)
