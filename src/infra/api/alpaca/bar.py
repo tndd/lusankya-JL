@@ -9,28 +9,6 @@ import json
 from dataclasses import dataclass
 from typing import Optional
 
-load_dotenv()
-api_key = os.getenv("APCA_API_KEY_ID")
-secret_key = os.getenv("APCA_API_SECRET_KEY")
-
-client = StockHistoricalDataClient(api_key, secret_key)
-
-request = StockBarsRequest(
-    symbol_or_symbols="MSFT",
-    start=datetime(2000,1,1),
-    end=datetime(2023,12,13),
-    timeframe=TimeFrame.Minute,
-    limit=10
-)
-
-bars = client.get_stock_bars(request)
-body = list(bars.data.values())[0]
-dictlist = [{k: v.isoformat() if k == 'timestamp' else v for k, v in d.__dict__.items()} for d in body]
-# print(dictlist)
-
-with open('out.json', 'w') as f:
-    json.dump(dictlist, f)
-
 
 @dataclass
 class StockBarClient:
@@ -161,3 +139,6 @@ if __name__ == "__main__":
         limit=10
     )
     print(resp)
+
+    with open('out.json', 'w') as f:
+        json.dump(resp, f)
