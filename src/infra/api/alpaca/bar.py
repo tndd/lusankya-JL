@@ -1,4 +1,3 @@
-import os
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
@@ -118,6 +117,8 @@ class StockBarClient:
 
 
 if __name__ == "__main__":
+    import os
+
     from dotenv import load_dotenv
 
     load_dotenv()
