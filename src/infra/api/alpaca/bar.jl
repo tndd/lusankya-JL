@@ -1,8 +1,4 @@
-using DotEnv
-
 include("../client.jl")
-
-DotEnv.load()
 
 # alpaca api stocks bars endpoint
 url = "https://data.alpaca.markets/v2/stocks/bars"
@@ -15,11 +11,5 @@ query = Dict(
     "timeframe" => "1Min"
 )
 
-# header
-headers = Dict(
-    "APCA-API-KEY-ID" => ENV["APCA_API_KEY_ID"],
-    "APCA-API-SECRET-KEY" => ENV["APCA_API_SECRET_KEY"]
-)
-
-b = req_get(url, query, headers)
-println(b)
+b = r_get_as_alpaca(url, query)
+println(b.r_body)

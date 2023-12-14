@@ -9,7 +9,7 @@ struct ApiResponse
     header::Dict
     r_status::Int
     r_header::Dict
-    r_body::Dict
+    r_body::String
 end
 
 
