@@ -1,7 +1,7 @@
 include("../client.jl")
 
 # alpaca api stocks bars endpoint
-url = "https://data.alpaca.markets/v2/stocks/bars"
+url = ENDPOINTS["alpaca"]["bar"]
 
 # query
 query = Dict(

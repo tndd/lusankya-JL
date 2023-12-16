@@ -3,6 +3,14 @@ using HTTP
 
 DotEnv.config()
 
+const ENDPOINTS = Dict(
+    "alpaca" => Dict(
+        "asset" => "https://broker-api.sandbox.alpaca.markets/v1/assets",
+        "bar" => "https://data.alpaca.markets/v2/stocks/bars"
+    )
+)
+
+
 struct ApiResponse
     url::String
     query::Dict
