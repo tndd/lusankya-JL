@@ -11,5 +11,6 @@ CREATE TABLE dataflow.api_snapshot (
 	status int4 NOT NULL,
 	resp_header json NOT NULL,
 	body json NULL,
-	CONSTRAINT api_snapshot_pkey PRIMARY KEY (id)
+	CONSTRAINT api_snapshot_pkey PRIMARY KEY (id),
+	CONSTRAINT api_snapshot_fk FOREIGN KEY (api_schedule_id) REFERENCES dataflow.api_schedule(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
