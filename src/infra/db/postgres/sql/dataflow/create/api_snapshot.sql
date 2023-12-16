@@ -6,8 +6,8 @@
 
 CREATE TABLE dataflow.api_snapshot (
 	id serial4 NOT NULL,
+    time_stamp timestamptz NOT NULL DEFAULT now(),
 	api_schedule_id int4 NOT NULL,
-	time_stamp timestamptz NOT NULL DEFAULT now(),
 	status int4 NOT NULL,
 	resp_header json NOT NULL,
 	body json NULL,
