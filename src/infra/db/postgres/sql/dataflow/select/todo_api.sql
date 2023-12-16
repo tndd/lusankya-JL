@@ -1,12 +1,18 @@
-SELECT * FROM api_schedule sch
-LEFT JOIN (
-    SELECT snp1.*
-    FROM api_snapshot snp1
-    JOIN (
-        SELECT api_schedule_id, MAX(timestamp) AS max_timestamp
-        FROM api_snapshot
-        GROUP BY api_schedule_id
-    ) snp2 ON snp1.api_schedule_id = snp2.api_schedule_id AND snp1.timestamp = snp2.max_timestamp
-) snp ON sch.id = snp.api_schedule_id
+WITH max_timestamps_snapshot AS (
+  SELECT api_schedule_id, MAX(timestamp) AS max_timestamp
+  FROM api_snapshot
+  GROUP BY api_schedule_id
+),
+latest_snapshots AS (
+  SELECT s.*
+  FROM api_snapshot s
+  JOIN max_timestamps_snapshot mts
+    ON s.api_schedule_id = mts.api_schedule_id
+   AND s.timestamp = mts.max_timestamp
+)
+SELECT *
+FROM api_schedule sch
+LEFT JOIN latest_snapshots lt_s
+  ON sch.id = lt_s.api_schedule_id
 WHERE sch.is_completed = false
-AND (snp.status IS NULL OR snp.status != 200);
+  AND (lt_s.status IS NULL OR lt_s.status <> 200);
