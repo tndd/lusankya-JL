@@ -1,8 +1,15 @@
-CREATE TABLE api_snapshot (
-    id SERIAL PRIMARY KEY,
-    api_schedule_id INT NOT NULL,
-    timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    status INT NOT NULL,
-    resp_header JSON NOT NULL,
-    body JSON NOT NULL
+-- dataflow.api_snapshot definition
+
+-- Drop table
+
+-- DROP TABLE dataflow.api_snapshot;
+
+CREATE TABLE dataflow.api_snapshot (
+	id serial4 NOT NULL,
+	api_schedule_id int4 NOT NULL,
+	time_stamp timestamptz NOT NULL DEFAULT now(),
+	status int4 NOT NULL,
+	resp_header json NOT NULL,
+	body json NULL,
+	CONSTRAINT api_snapshot_pkey PRIMARY KEY (id)
 );

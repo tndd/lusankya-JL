@@ -1,8 +1,14 @@
-CREATE TABLE api_schedule (
-    id SERIAL PRIMARY KEY,
-    timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    endpoint TEXT NOT NULL,
-    query JSON NOT NULL,
-    req_header JSON NOT NULL,
-    is_completed BOOLEAN NOT NULL DEFAULT FALSE
+-- dataflow.api_schedule definition
+
+-- Drop table
+
+-- DROP TABLE dataflow.api_schedule;
+
+CREATE TABLE dataflow.api_schedule (
+	id serial4 NOT NULL,
+	time_stamp timestamptz NOT NULL DEFAULT now(),
+	endpoint text NOT NULL,
+	query json NOT NULL,
+	req_header json NOT NULL,
+	CONSTRAINT api_schedule_pkey PRIMARY KEY (id)
 );
