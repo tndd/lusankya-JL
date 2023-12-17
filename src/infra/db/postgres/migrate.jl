@@ -6,10 +6,10 @@ function load_query(
         command::String,
         name::String
     )::String
-    filepath = joinpath(@__DIR__, "sql", schema, command, name)
+    filepath = joinpath(@__DIR__, "sql", schema, command, name * ".sql")
     return read(filepath, String)
 end
 
 
-sql = load_query("dataflow", "create", "api_snapshot.sql")
+sql = load_query("dataflow", "create", "api_snapshot")
 println(sql)
