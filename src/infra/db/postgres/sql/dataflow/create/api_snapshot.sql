@@ -1,9 +1,3 @@
--- dataflow.api_snapshot definition
-
--- Drop table
-
--- DROP TABLE dataflow.api_snapshot;
-
 CREATE TABLE dataflow.api_snapshot (
 	id serial4 NOT NULL,
 	time_stamp timestamptz NOT NULL DEFAULT now(),

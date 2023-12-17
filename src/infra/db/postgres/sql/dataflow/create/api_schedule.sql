@@ -1,9 +1,3 @@
--- dataflow.api_schedule definition
-
--- Drop table
-
--- DROP TABLE dataflow.api_schedule;
-
 CREATE TABLE dataflow.api_schedule (
 	id serial4 NOT NULL,
 	time_stamp timestamptz NOT NULL DEFAULT now(),
