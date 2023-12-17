@@ -10,17 +10,8 @@ services:
       - lusankya_redis:/data
       - ./docker/service_conf/redis.conf:/usr/local/etc/redis/redis.conf
 
-  influxdb:
-    image: influxdb
-    ports:
-      - "49513:8086"
-    volumes:
-      - lusankya_influxdb:/var/lib/influxdb
-    environment:
-      - INFLUXDB_DB=lusankya
-
   postgres:
-    image: postgres
+    image: timescale/timescaledb:latest-pg12
     ports:
       - "49514:5432"
     volumes:
@@ -32,5 +23,4 @@ services:
 
 volumes:
   lusankya_redis:
-  lusankya_influxdb:
   lusankya_postgres:
