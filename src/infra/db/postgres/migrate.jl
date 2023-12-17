@@ -1,3 +1,4 @@
+module Migrate
 # include("client.jl")
 
 
@@ -13,3 +14,6 @@ end
 
 sql = load_query("dataflow", "create", "api_snapshot")
 println(sql)
+
+
+end
