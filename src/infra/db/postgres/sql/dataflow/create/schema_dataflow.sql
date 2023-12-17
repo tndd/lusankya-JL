@@ -1,0 +1,1 @@
+CREATE SCHEMA dataflow AUTHORIZATION postgres;
