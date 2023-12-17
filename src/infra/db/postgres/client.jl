@@ -23,9 +23,12 @@ end
 
 
 function parallel_execute(queries::Vector{String})
-    threads = min(length(queries), 16)
-    Threads.@threads for i in 1:threads
-        chunk = queries[i:threads:length(queries)]
+    n_query = length(queries)
+    n_thread = min(n_query, 16)
+    @threads for i in 1:n_thread
+        chunk = queries[i:n_thread:n_query]
         transact_execute(chunk)
     end
 end
+
+println("OK")
