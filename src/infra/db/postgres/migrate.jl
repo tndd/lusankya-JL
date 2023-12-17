@@ -1,4 +1,3 @@
-module Migrate
 # include("client.jl")
 
 
@@ -9,11 +8,4 @@ function load_query(
     )::String
     filepath = joinpath(@__DIR__, "sql", schema, command, name * ".sql")
     return read(filepath, String)
-end
-
-
-sql = load_query("dataflow", "create", "api_snapshot")
-println(sql)
-
-
 end
